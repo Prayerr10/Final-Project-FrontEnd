@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { convertYoutubeLink } from '../../api/youtubeService';
+import { addSongToLibrary } from '../../api/databaseService'; 
 
 const ConverterCard = () => {
     const [inputUrl, setInputUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [songData, setSongData] = useState(null);
     const [error, setError] = useState('');
+    const [saveStatus, setSaveStatus] = useState('idle'); // idle | success | failed
 
     const handleConvert = async () => {
         if (!inputUrl.trim()) {
@@ -16,16 +18,29 @@ const ConverterCard = () => {
         setIsLoading(true);
         setError('');
         setSongData(null);
+        setSaveStatus('idle');
 
         try {
             const result = await convertYoutubeLink(inputUrl);
-
             setSongData(result);
-            console.log("Data diterima:", result);
         } catch (err) {
-            setError(err.message || 'Terjadi Kesalahan yang tidak diketahui.');
+            setError(err.message || 'Terjadi Kesalahan.');
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const handleSaveToPlaylist = async () => {
+        if (!songData) return;
+
+        try {
+            await addSongToLibrary(songData);
+            
+            setSaveStatus('success');
+            window.alert(`Berhasil! Lagu "${songData.title}" masuk ke Playlist.`);
+        } catch (err) {
+            setSaveStatus('failed');
+            window.alert(`Gagal Menyimpan: ${err.message}`);
         }
     };
 
@@ -73,9 +88,6 @@ const ConverterCard = () => {
                         alt="Album Art"
                         className="w-24 h-24 object-cover rounded-xl shadow-md"
                     />
-                    <div className='absolute inset-0 bg-black/40 flex items-center justify-center rounded-xl opacity-0 group-hover:opacity-100 transition-opacity'>
-                        <span className='text-white text-2xl'>Play</span>
-                    </div>
                   </div>
 
                   <div className='flex-1 min-w-0'>
@@ -89,8 +101,11 @@ const ConverterCard = () => {
                         <button className='flex-1 bg-green-600 hover:bg-green-500 text-white text-xs font-bold py-2 rounded-lg transition-colors'>
                             Download MP3
                         </button>
-                        <button className='px-3 border border-slate-500 text-slate-300 hover:text-white hover:border-white rounded-lg transition-colors text-xs font-bold'>
-                            + PlayList
+                        <button 
+                            onClick={handleSaveToPlaylist}
+                            className='px-3 border border-slate-500 text-slate-300 hover:text-white hover:border-white rounded-lg transition-colors text-xs font-bold'
+                        >
+                            {saveStatus === 'success' ? '✔ Saved' : '+ PlayList'}
                         </button>
                     </div>
                   </div>
