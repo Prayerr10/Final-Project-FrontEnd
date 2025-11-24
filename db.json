@@ -1,11 +1,21 @@
 {
-  "library": [ 
-    { "id": 1, "title": "Song A", "artist": "Artist A", "url": "mp3_link", "lyrics": "..." }
+  "songs": [
+    {
+      "id": "mock-1",
+      "title": "Lofi Study Beats",
+      "artist": "Lofi Girl",
+      "youtubeId": "jfKfPfyJRdk",
+      "coverUrl": "https://img.youtube.com/vi/jfKfPfyJRdk/hqdefault.jpg",
+      "duration": "3:45",
+      "downloadUrl": "#"
+    }
   ],
-  "playlist": [ 
-    { "id": 101, "songId": 1, "addedAt": "timestamp" }
+  "playlists": [
+    {
+      "id": 1,
+      "name": "My Favorites",
+      "songs": []
+    }
   ],
-  "history": [ 
-    { "id": 201, "songId": 1, "playedAt": "timestamp" }
-  ]
+  "history": []
 }
