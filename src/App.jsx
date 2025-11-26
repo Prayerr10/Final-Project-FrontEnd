@@ -1,11 +1,9 @@
 import React from "react";
-import ConverterCard from "./components/converter/ConverterCard";
+import Search from "./pages/Search";
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 py-10 px-4">
-      <ConverterCard />
-    </div>
+    <Search />
   );
 }
 

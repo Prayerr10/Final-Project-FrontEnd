@@ -1,13 +1,44 @@
 {
   "songs": [
     {
-      "id": "mock-1",
-      "title": "Lofi Study Beats",
-      "artist": "Lofi Girl",
-      "youtubeId": "jfKfPfyJRdk",
-      "coverUrl": "https://img.youtube.com/vi/jfKfPfyJRdk/hqdefault.jpg",
-      "duration": "3:45",
-      "downloadUrl": "#"
+      "id": "1",
+      "title": "Summer Breeze",
+      "artist": "Acoustic Dreams",
+      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "cover_image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop",
+      "category": "Acoustic"
+    },
+    {
+      "id": "2",
+      "title": "Neon Lights",
+      "artist": "Electric Pulse",
+      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      "cover_image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
+      "category": "Electronic"
+    },
+    {
+      "id": "3",
+      "title": "Jazz Cafe",
+      "artist": "Smooth Vibes",
+      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+      "cover_image": "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&h=400&fit=crop",
+      "category": "Jazz"
+    },
+    {
+      "id": "4",
+      "title": "Mountain Echo",
+      "artist": "Nature Sounds",
+      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+      "cover_image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=400&fit=crop",
+      "category": "Ambient"
+    },
+    {
+      "id": "5",
+      "title": "Urban Flow",
+      "artist": "Street Beats",
+      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+      "cover_image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
+      "category": "Hip-Hop"
     }
   ],
   "playlists": [
