@@ -1,75 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { BiSkipPrevious, BiSkipNext } from 'react-icons/bi'
 import { usePlayer } from '../context/PlayerContext'
 
+const FALLBACK_IMAGE =
+  'https://images.unsplash.com/photo-1454922915609-78549ad709bb?auto=format&fit=crop&w=600&q=80'
+
+const formatTime = (valueInSeconds) => {
+  if (!Number.isFinite(valueInSeconds)) return '0:00'
+  const minutes = Math.floor(valueInSeconds / 60)
+  const seconds = Math.floor(valueInSeconds % 60)
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+}
+
 const PlayerBar = () => {
-  const { currentSong, isPlaying, togglePlay, playSong, audioRef } = usePlayer()
-  const [volume, setVolume] = useState(0.7)
-  const [progress, setProgress] = useState(0)
-  const [totalDuration, setTotalDuration] = useState(currentSong?.duration ?? 180) // seconds
+  const {
+    currentSong,
+    isPlaying,
+    progress,
+    duration,
+    volume,
+    error,
+    togglePlay,
+    seek,
+    setVolumeLevel,
+    audioRef,
+  } = usePlayer()
 
-  useEffect(() => {
-    if (!audioRef.current) return
-    audioRef.current.volume = volume
-  }, [volume, audioRef])
-
-  // Dummy progress updater (visual only)
-  useEffect(() => {
-    if (!currentSong) {
-      setProgress(0)
-      return
-    }
-
-    // reset progress when track changes
-    setProgress(0)
-    setTotalDuration(currentSong?.duration ?? 180)
-  }, [currentSong])
-
-  // Sync progress with actual audio element when available
-  useEffect(() => {
-    const audio = audioRef?.current
-    if (!audio) return
-
-    const onTime = () => setProgress(Math.floor(audio.currentTime))
-    const onLoaded = () => setTotalDuration(Math.floor(audio.duration) || totalDuration)
-
-    audio.addEventListener('timeupdate', onTime)
-    audio.addEventListener('loadedmetadata', onLoaded)
-
-    return () => {
-      audio.removeEventListener('timeupdate', onTime)
-      audio.removeEventListener('loadedmetadata', onLoaded)
-    }
-  }, [audioRef, totalDuration])
-
-  const handleToggle = () => {
-    if (!currentSong) {
-      playSong()
-      return
-    }
-    togglePlay()
-
-    // attempt direct control to ensure immediate response
-    const audio = audioRef?.current
-    if (!audio) return
-    if (isPlaying) {
-      audio.pause()
-    } else {
-      const p = audio.play()
-      if (p?.catch) p.catch(() => null)
-    }
-  }
+  const progressPercent = useMemo(() => {
+    if (!duration) return 0
+    return Math.min(100, Math.max(0, (progress / duration) * 100))
+  }, [progress, duration])
 
   const handlePrev = () => {
-    // Placeholder: integrate with context when tracklist exists
-    if (audioRef.current) audioRef.current.currentTime = 0
-    setProgress(0)
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
+      seek(0)
+    }
   }
 
   const handleNext = () => {
-    // Placeholder: integrate with context when tracklist exists
-    if (audioRef.current) audioRef.current.currentTime = 0
-    setProgress(0)
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
+      seek(0)
+    }
   }
 
   if (!currentSong) {
@@ -90,7 +63,7 @@ const PlayerBar = () => {
               max="1"
               step="0.01"
               value={volume}
-              onChange={(event) => setVolume(Number(event.target.value))}
+              onChange={(event) => setVolumeLevel(Number(event.target.value))}
               className="w-40 accent-green-500"
             />
           </div>
@@ -99,38 +72,42 @@ const PlayerBar = () => {
     )
   }
 
-  // Convert seconds to mm:ss
-  const fmt = (s) => {
-    const m = Math.floor(s / 60)
-    const sec = Math.floor(s % 60)
-    return `${m}:${sec.toString().padStart(2, '0')}`
-  }
-
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-black text-white shadow-2xl shadow-black/50">
       <div className="mx-auto max-w-5xl px-6 py-3">
-        {/* Progress */}
+        {/* Progress Bar */}
         <div className="mb-2">
           <input
             type="range"
-            min="0"
-            max={totalDuration}
-            step="1"
+            min={0}
+            max={duration || 0}
+            step="0.01"
             value={progress}
-            onChange={(e) => setProgress(Number(e.target.value))}
+            onChange={(event) => seek(Number(event.target.value))}
             className="w-full h-1 accent-green-500 bg-zinc-800 rounded"
           />
           <div className="flex items-center justify-between text-xs text-zinc-400 mt-1">
-            <span>{fmt(progress)}</span>
-            <span>{fmt(totalDuration)}</span>
+            <span>{formatTime(progress)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex flex-col">
-            <p className="text-sm text-zinc-400 uppercase tracking-widest">Now Playing</p>
-            <p className="text-lg font-semibold">{currentSong.title}</p>
-            <p className="text-sm text-zinc-400">{currentSong.artist}</p>
+          {/* Song Info */}
+          <div className="flex items-center gap-3 flex-1">
+            <div className="h-14 w-14 overflow-hidden rounded-lg">
+              <img
+                src={currentSong.imageUrl || FALLBACK_IMAGE}
+                alt={currentSong.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <p className="text-sm text-zinc-400 uppercase tracking-widest">Now Playing</p>
+              <p className="text-lg font-semibold">{currentSong.title}</p>
+              <p className="text-sm text-zinc-400">{currentSong.artist}</p>
+              {error && <p className="text-xs text-red-400">{error}</p>}
+            </div>
           </div>
 
           {/* Controls */}
@@ -145,7 +122,7 @@ const PlayerBar = () => {
 
             <button
               type="button"
-              onClick={handleToggle}
+              onClick={togglePlay}
               className="flex items-center justify-center h-14 w-14 rounded-full bg-green-500 text-black shadow-lg transform transition hover:scale-105"
               aria-label={isPlaying ? 'Pause' : 'Play'}
             >
@@ -169,7 +146,8 @@ const PlayerBar = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Volume Control */}
+          <div className="flex items-center gap-3 flex-1 justify-end">
             <span className="text-xs text-zinc-400">Volume</span>
             <input
               type="range"
@@ -177,9 +155,10 @@ const PlayerBar = () => {
               max="1"
               step="0.01"
               value={volume}
-              onChange={(event) => setVolume(Number(event.target.value))}
+              onChange={(event) => setVolumeLevel(Number(event.target.value))}
               className="w-40 accent-green-500"
             />
+            <span className="text-xs text-zinc-400 w-10">{Math.round(volume * 100)}%</span>
           </div>
         </div>
       </div>
@@ -188,4 +167,3 @@ const PlayerBar = () => {
 }
 
 export default PlayerBar
-

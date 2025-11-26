@@ -1,13 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
+import './index.css'
 import { PlayerProvider } from './context/PlayerContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <PlayerProvider>
-      <App />
-    </PlayerProvider>
+    <BrowserRouter>
+      <PlayerProvider>
+        <App />
+      </PlayerProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
