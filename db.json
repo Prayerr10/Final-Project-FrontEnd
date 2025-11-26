@@ -1,52 +1,134 @@
 {
-  "songs": [
-    {
-      "id": "1",
-      "title": "Summer Breeze",
-      "artist": "Acoustic Dreams",
-      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      "cover_image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop",
-      "category": "Acoustic"
-    },
-    {
-      "id": "2",
-      "title": "Neon Lights",
-      "artist": "Electric Pulse",
-      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-      "cover_image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
-      "category": "Electronic"
-    },
-    {
-      "id": "3",
-      "title": "Jazz Cafe",
-      "artist": "Smooth Vibes",
-      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-      "cover_image": "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&h=400&fit=crop",
-      "category": "Jazz"
-    },
-    {
-      "id": "4",
-      "title": "Mountain Echo",
-      "artist": "Nature Sounds",
-      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-      "cover_image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=400&fit=crop",
-      "category": "Ambient"
-    },
-    {
-      "id": "5",
-      "title": "Urban Flow",
-      "artist": "Street Beats",
-      "url_mp3": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
-      "cover_image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
-      "category": "Hip-Hop"
-    }
-  ],
-  "playlists": [
-    {
-      "id": 1,
-      "name": "My Favorites",
-      "songs": []
-    }
-  ],
-  "history": []
+    "songs": [
+        {
+            "id": 1,
+            "title": "Twist The Knife",
+            "artist": "Chromatics",
+            "album": "Night Drive",
+            "image": "https://i.scdn.co/image/ab67616d0000b2730c13d3d5a503c8d34b3205f3",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+            "duration": "6:12",
+            "color": "#782838"
+        },
+        {
+            "id": 2,
+            "title": "Running Up That Hill",
+            "artist": "Kate Bush",
+            "album": "Hounds of Love",
+            "image": "https://i.scdn.co/image/ab67616d0000b2739b6ac96a594e8ce8545dbc97",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+            "duration": "7:05",
+            "color": "#584868"
+        },
+        {
+            "id": 3,
+            "title": "Midnight City",
+            "artist": "M83",
+            "album": "Hurry Up, We're Dreaming",
+            "image": "https://i.scdn.co/image/ab67616d0000b2732953252a71d27f8e8332155f",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+            "duration": "5:44",
+            "color": "#283848"
+        },
+        {
+            "id": 4,
+            "title": "Space Song",
+            "artist": "Beach House",
+            "album": "Depression Cherry",
+            "image": "https://i.scdn.co/image/ab67616d0000b2735d78e071fdc472c7269c2625",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+            "duration": "5:28",
+            "color": "#882828"
+        },
+        {
+            "id": 5,
+            "title": "After Dark",
+            "artist": "Mr. Kitty",
+            "album": "Time",
+            "image": "https://i.scdn.co/image/ab67616d0000b2732b18536b43081a98074a641d",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+            "duration": "6:03",
+            "color": "#181818"
+        },
+        {
+            "id": 6,
+            "title": "Resonance",
+            "artist": "Home",
+            "album": "Odyssey",
+            "image": "https://i.scdn.co/image/ab67616d0000b273a1d135887d646c058a55d57b",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+            "duration": "3:32",
+            "color": "#986838"
+        },
+        {
+            "id": 7,
+            "title": "Dreams",
+            "artist": "Fleetwood Mac",
+            "album": "Rumours",
+            "image": "https://i.scdn.co/image/ab67616d0000b273e059869045f9588965495033",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+            "duration": "4:17",
+            "color": "#A88838"
+        },
+        {
+            "id": 8,
+            "title": "The Less I Know The Better",
+            "artist": "Tame Impala",
+            "album": "Currents",
+            "image": "https://i.scdn.co/image/ab67616d0000b2739e14877114c3e8a4d70f2b2e",
+            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+            "duration": "3:36",
+            "color": "#682878"
+        }
+    ],
+    "playlists": [
+        {
+            "id": 1,
+            "name": "Night Drive",
+            "description": "Perfect for late night drives.",
+            "image": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop",
+            "songs": [
+                1,
+                3,
+                5,
+                6
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Indie Vibes",
+            "description": "The best of indie pop and rock.",
+            "image": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1974&auto=format&fit=crop",
+            "songs": [
+                2,
+                4,
+                7,
+                8
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Synthwave Essentials",
+            "description": "Retro futuristic sounds.",
+            "image": "https://images.unsplash.com/photo-1504509546545-e000b4a62925?q=80&w=2071&auto=format&fit=crop",
+            "songs": [
+                3,
+                5,
+                6,
+                1
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Chill Hits",
+            "description": "Relax and unwind.",
+            "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
+            "songs": [
+                4,
+                7,
+                8,
+                2
+            ]
+        }
+    ]
 }

@@ -1,169 +1,125 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { createContext, useState, useRef, useEffect } from 'react';
+import { getSongs } from '../api/api';
 
-const PlayerContext = createContext(null)
+export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
-  const audioRef = useRef(typeof window !== 'undefined' ? new Audio() : null)
-  const [currentSong, setCurrentSong] = useState(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [volume, setVolume] = useState(0.8)
-  const [error, setError] = useState(null)
+    const [allSongs, setAllSongs] = useState([]);
+    const [currentSong, setCurrentSong] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [queue, setQueue] = useState([]);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const audioRef = useRef(null);
 
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return undefined
+    useEffect(() => {
+        const fetchSongsData = async () => {
+            const data = await getSongs();
+            setAllSongs(data);
+        };
+        fetchSongsData();
+    }, []);
 
-    const handleLoadedMetadata = () => setDuration(audio.duration || 0)
-    const handleTimeUpdate = () => setProgress(audio.currentTime || 0)
-    const handleEnded = () => setIsPlaying(false)
-    const handlePlay = () => setIsPlaying(true)
-    const handlePause = () => setIsPlaying(false)
-    const handleError = () => {
-      setError('Tidak dapat memutar audio ini.')
-      setIsPlaying(false)
-    }
+    const playSong = (song, newQueue = null) => {
+        if (newQueue) {
+            setQueue(newQueue);
+        } else if (queue.length === 0) {
+            // If no queue exists, make a queue with just this song or all songs?
+            // Let's default to all songs if no queue is specified, starting from this song
+            setQueue(allSongs);
+        }
 
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata)
-    audio.addEventListener('timeupdate', handleTimeUpdate)
-    audio.addEventListener('ended', handleEnded)
-    audio.addEventListener('play', handlePlay)
-    audio.addEventListener('pause', handlePause)
-    audio.addEventListener('error', handleError)
+        setCurrentSong(song);
+        setIsPlaying(true);
 
-    return () => {
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
-      audio.removeEventListener('timeupdate', handleTimeUpdate)
-      audio.removeEventListener('ended', handleEnded)
-      audio.removeEventListener('play', handlePlay)
-      audio.removeEventListener('pause', handlePause)
-      audio.removeEventListener('error', handleError)
-    }
-  }, [])
+        if (audioRef.current) {
+            audioRef.current.src = song.url;
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch(e => console.error("Playback failed:", e));
+        }
+    };
 
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    audio.volume = volume
-  }, [volume])
+    const playPlaylist = (playlistSongsIds) => {
+        const playlistSongs = playlistSongsIds.map(id => allSongs.find(s => s.id === id)).filter(Boolean);
+        if (playlistSongs.length > 0) {
+            setQueue(playlistSongs);
+            playSong(playlistSongs[0], playlistSongs);
+        }
+    };
 
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio || !currentSong?.audioUrl) return
-    if (audio.src !== currentSong.audioUrl) {
-      audio.src = currentSong.audioUrl
-    }
-  }, [currentSong])
+    const pauseSong = () => {
+        setIsPlaying(false);
+        if (audioRef.current) {
+            audioRef.current.pause();
+        }
+    };
 
-  const ensureSource = useCallback((song) => {
-    const audio = audioRef.current
-    if (!audio || !song?.audioUrl) return null
-    if (audio.src !== song.audioUrl) {
-      audio.src = song.audioUrl
-    }
-    return audio
-  }, [])
+    const resumeSong = () => {
+        setIsPlaying(true);
+        if (audioRef.current) {
+            audioRef.current.play().catch(e => console.error("Playback failed:", e));
+        }
+    };
 
-  const playSong = useCallback((song) => {
-    if (!song?.audioUrl) {
-      setError('Audio URL tidak tersedia untuk lagu ini.')
-      return
-    }
-    setCurrentSong({ ...song })
-    const audio = ensureSource(song)
-    if (!audio) return
+    const nextSong = () => {
+        if (!currentSong || queue.length === 0) return;
+        const currentIndex = queue.findIndex((s) => s.id === currentSong.id);
+        const nextIndex = (currentIndex + 1) % queue.length;
+        playSong(queue[nextIndex]);
+    };
 
-    audio.currentTime = 0
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(() => {
-        setError('Autoplay diblokir. Tekan tombol play manual.')
-        setIsPlaying(false)
-      })
-  }, [ensureSource])
+    const prevSong = () => {
+        if (!currentSong || queue.length === 0) return;
+        const currentIndex = queue.findIndex((s) => s.id === currentSong.id);
+        const prevIndex = (currentIndex - 1 + queue.length) % queue.length;
+        playSong(queue[prevIndex]);
+    };
 
-  const pauseSong = useCallback(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    audio.pause()
-    setIsPlaying(false)
-  }, [])
+    const onTimeUpdate = () => {
+        if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime);
+            setDuration(audioRef.current.duration);
+        }
+    };
 
-  const resumeSong = useCallback(() => {
-    if (!currentSong) return
-    const audio = ensureSource(currentSong)
-    if (!audio) return
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setError('Tidak dapat memutar audio ini.'))
-  }, [currentSong, ensureSource])
+    const onEnded = () => {
+        nextSong();
+    };
 
-  const togglePlay = useCallback(() => {
-    if (!currentSong) return
-    if (isPlaying) {
-      pauseSong()
-    } else {
-      resumeSong()
-    }
-  }, [currentSong, isPlaying, pauseSong, resumeSong])
+    const seek = (time) => {
+        if (audioRef.current) {
+            audioRef.current.currentTime = time;
+            setCurrentTime(time);
+        }
+    };
 
-  const seek = useCallback((timeInSeconds) => {
-    const audio = audioRef.current
-    if (!audio) return
-    audio.currentTime = timeInSeconds
-    setProgress(timeInSeconds)
-  }, [])
+    return (
+        <PlayerContext.Provider
+            value={{
+                allSongs,
+                currentSong,
+                isPlaying,
+                queue,
+                currentTime,
+                duration,
+                playSong,
+                playPlaylist,
+                pauseSong,
+                resumeSong,
+                nextSong,
+                prevSong,
+                seek,
+                audioRef,
+            }}
+        >
+            <audio
+                ref={audioRef}
+                onEnded={onEnded}
+                onTimeUpdate={onTimeUpdate}
+            />
+            {children}
+        </PlayerContext.Provider>
+    );
+};
 
-  const setVolumeLevel = useCallback((value) => {
-    const audio = audioRef.current
-    if (!audio) return
-    const nextVolume = Math.min(1, Math.max(0, value))
-    audio.volume = nextVolume
-    setVolume(nextVolume)
-  }, [])
-
-  const value = useMemo(
-    () => ({
-      currentSong,
-      isPlaying,
-      duration,
-      progress,
-      volume,
-      error,
-      playSong,
-      pauseSong,
-      resumeSong,
-      togglePlay,
-      seek,
-      setVolumeLevel,
-      audioRef,
-    }),
-    [
-      currentSong,
-      isPlaying,
-      duration,
-      progress,
-      volume,
-      error,
-      playSong,
-      pauseSong,
-      resumeSong,
-      togglePlay,
-      seek,
-      setVolumeLevel,
-    ],
-  )
-
-  return <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>
-}
-
-export const usePlayer = () => {
-  const context = useContext(PlayerContext)
-  if (!context) {
-    throw new Error('usePlayer must be used inside PlayerProvider')
-  }
-  return context
-}
+export default PlayerProvider;
