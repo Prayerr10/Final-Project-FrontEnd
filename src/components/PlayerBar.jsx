@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { BiSkipPrevious, BiSkipNext } from 'react-icons/bi'
 import { usePlayer } from '../context/PlayerContext'
 
 const FALLBACK_IMAGE =
@@ -22,6 +23,7 @@ const PlayerBar = () => {
     togglePlay,
     seek,
     setVolumeLevel,
+    audioRef,
   } = usePlayer()
 
   const progressPercent = useMemo(() => {
@@ -29,81 +31,139 @@ const PlayerBar = () => {
     return Math.min(100, Math.max(0, (progress / duration) * 100))
   }, [progress, duration])
 
+  const handlePrev = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
+      seek(0)
+    }
+  }
+
+  const handleNext = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
+      seek(0)
+    }
+  }
+
   if (!currentSong) {
-    return null
+    return (
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-zinc-900 text-white shadow-2xl shadow-black/40">
+        <div className="mx-auto flex h-full max-w-5xl items-center justify-between px-6">
+          <div className="flex flex-col">
+            <p className="text-sm text-zinc-400 uppercase tracking-widest">No Track</p>
+            <p className="text-lg font-semibold">-</p>
+            <p className="text-sm text-zinc-400">-</p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-zinc-400">Volume</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(event) => setVolumeLevel(Number(event.target.value))}
+              className="w-40 accent-green-500"
+            />
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="fixed bottom-4 left-1/2 z-30 w-[95%] max-w-4xl -translate-x-1/2 rounded-3xl border border-zinc-800 bg-zinc-950/80 px-6 py-4 text-white shadow-2xl shadow-black/50 backdrop-blur-2xl">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
-        <div className="flex flex-1 items-center gap-3">
-          <div className="h-14 w-14 overflow-hidden rounded-2xl">
-            <img src={currentSong.imageUrl || FALLBACK_IMAGE} alt={currentSong.title} className="h-full w-full object-cover" />
-          </div>
-          <div>
-            <p className="font-semibold text-white">{currentSong.title}</p>
-            <p className="text-sm text-zinc-400">{currentSong.artist}</p>
-            {error && <p className="text-xs text-red-400">{error}</p>}
+    <div className="fixed bottom-0 left-0 right-0 bg-black text-white shadow-2xl shadow-black/50">
+      <div className="mx-auto max-w-5xl px-6 py-3">
+        {/* Progress Bar */}
+        <div className="mb-2">
+          <input
+            type="range"
+            min={0}
+            max={duration || 0}
+            step="0.01"
+            value={progress}
+            onChange={(event) => seek(Number(event.target.value))}
+            className="w-full h-1 accent-green-500 bg-zinc-800 rounded"
+          />
+          <div className="flex items-center justify-between text-xs text-zinc-400 mt-1">
+            <span>{formatTime(progress)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col gap-2">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between">
+          {/* Song Info */}
+          <div className="flex items-center gap-3 flex-1">
+            <div className="h-14 w-14 overflow-hidden rounded-lg">
+              <img
+                src={currentSong.imageUrl || FALLBACK_IMAGE}
+                alt={currentSong.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <p className="text-sm text-zinc-400 uppercase tracking-widest">Now Playing</p>
+              <p className="text-lg font-semibold">{currentSong.title}</p>
+              <p className="text-sm text-zinc-400">{currentSong.artist}</p>
+              {error && <p className="text-xs text-red-400">{error}</p>}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-6">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous"
+              className="text-gray-400 hover:text-white transition"
+            >
+              <BiSkipPrevious className="h-7 w-7" />
+            </button>
+
             <button
               type="button"
               onClick={togglePlay}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition hover:scale-105"
+              className="flex items-center justify-center h-14 w-14 rounded-full bg-green-500 text-black shadow-lg transform transition hover:scale-105"
+              aria-label={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-5 w-5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
                   <path d="M8 5h3v14H8zm5 0h3v14h-3z" />
                 </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-5 w-5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
                   <path d="M7 5v14l11-7z" />
                 </svg>
               )}
             </button>
-            <div className="flex flex-1 flex-col gap-1">
-              <input
-                type="range"
-                min={0}
-                max={duration || 0}
-                step="0.01"
-                value={progress}
-                onChange={(event) => seek(Number(event.target.value))}
-                className="w-full accent-emerald-400"
-              />
-              <div className="flex items-center justify-between text-xs text-zinc-400">
-                <span>{formatTime(progress)}</span>
-                <span>{formatTime(duration)}</span>
-              </div>
-            </div>
+
+            <button
+              onClick={handleNext}
+              aria-label="Next"
+              className="text-gray-400 hover:text-white transition"
+            >
+              <BiSkipNext className="h-7 w-7" />
+            </button>
+          </div>
+
+          {/* Volume Control */}
+          <div className="flex items-center gap-3 flex-1 justify-end">
+            <span className="text-xs text-zinc-400">Volume</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(event) => setVolumeLevel(Number(event.target.value))}
+              className="w-40 accent-green-500"
+            />
+            <span className="text-xs text-zinc-400 w-10">{Math.round(volume * 100)}%</span>
           </div>
         </div>
-
-        <div className="flex w-full items-center gap-2 md:w-auto md:min-w-[180px]">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-4 w-4 text-zinc-400">
-            <path d="M13 5.23v13.54c0 .61-.7.96-1.2.6L7 15H4a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3l4.8-4.37c.5-.36 1.2-.01 1.2.6z" />
-          </svg>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step="0.01"
-            value={volume}
-            onChange={(event) => setVolumeLevel(Number(event.target.value))}
-            className="w-full accent-emerald-400 md:w-28"
-          />
-          <span className="text-xs text-zinc-400">{Math.round(volume * 100)}%</span>
-        </div>
-      </div>
-      <div className="mt-2 h-1 rounded-full bg-zinc-800">
-        <div className="h-full rounded-full bg-emerald-400" style={{ width: `${progressPercent}%` }} />
       </div>
     </div>
   )
 }
 
 export default PlayerBar
-

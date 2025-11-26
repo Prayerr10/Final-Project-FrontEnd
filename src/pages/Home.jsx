@@ -1,55 +1,40 @@
+import { useEffect, useState } from 'react'
+import { getAllSongs } from '../api/api'
 import SongCard from '../components/SongCard'
-
-const DUMMY_DATA = [
-  {
-    id: 'dummy-1',
-    title: 'Neon Nights',
-    artist: 'The Midnight City',
-    imageUrl:
-      'https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'dummy-2',
-    title: 'Ocean Breeze',
-    artist: 'Luna Wave',
-    imageUrl:
-      'https://images.unsplash.com/photo-1525362081669-2b476bb628c3?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'dummy-3',
-    title: 'Sunset Boulevard',
-    artist: 'Retro Drive',
-    imageUrl:
-      'https://images.unsplash.com/photo-1487215078519-e21cc028cb29?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'dummy-4',
-    title: 'Moonlight Echo',
-    artist: 'Nova & Friends',
-    imageUrl:
-      'https://images.unsplash.com/photo-1507878866276-a947ef722fee?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'dummy-5',
-    title: 'Skyline Dreams',
-    artist: 'Future Pulse',
-    imageUrl:
-      'https://images.unsplash.com/photo-1454922915609-78549ad709bb?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    id: 'dummy-6',
-    title: 'City Lights',
-    artist: 'Electric Bloom',
-    imageUrl:
-      'https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?auto=format&fit=crop&w=600&q=80',
-  },
-]
+import { usePlayer } from '../context/PlayerContext'
 
 const Home = () => {
-  const handleSongClick = (song) => {
-    // Dummy handler until backend/player ready
-    window.alert(`Putar lagu: ${song.title} - ${song.artist}`)
-  }
+  const [songs, setSongs] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const { playSong } = usePlayer()
+
+  useEffect(() => {
+    let ignore = false
+
+    const fetchSongs = async () => {
+      try {
+        const data = await getAllSongs()
+        if (!ignore) {
+          setSongs(data)
+        }
+      } catch (err) {
+        if (!ignore) {
+          setError('Gagal memuat daftar lagu. Coba lagi beberapa saat.')
+        }
+      } finally {
+        if (!ignore) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    fetchSongs()
+
+    return () => {
+      ignore = true
+    }
+  }, [])
 
   return (
     <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-white">
@@ -58,20 +43,42 @@ const Home = () => {
           <p className="text-sm uppercase tracking-widest text-emerald-400">Selamat datang</p>
           <h1 className="text-3xl font-bold text-white md:text-4xl">Playlist Favorit Minggu Ini</h1>
           <p className="text-sm text-zinc-400">
-            Gunakan data dummy ini untuk preview tampilan sampai backend siap.
+            Pilih lagu untuk diputar dan nikmati nuansa Spotify versi kamu sendiri.
           </p>
         </header>
 
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {DUMMY_DATA.map((song) => (
-            <SongCard key={song.id} song={song} onClick={() => handleSongClick(song)} />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className="animate-pulse rounded-2xl bg-zinc-900/60 p-4">
+                <div className="mb-4 aspect-square rounded-xl bg-zinc-800" />
+                <div className="mb-2 h-4 rounded-full bg-zinc-800" />
+                <div className="h-3 w-2/3 rounded-full bg-zinc-800" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <p className="rounded-xl bg-red-500/10 p-4 text-sm text-red-300">{error}</p>
+        )}
+
+        {!isLoading && !error && songs.length === 0 && (
+          <div className="rounded-2xl border border-dashed border-zinc-700 p-10 text-center text-zinc-400">
+            Belum ada lagu. Tambahkan lagu pertamamu!
+          </div>
+        )}
+
+        {!isLoading && !error && songs.length > 0 && (
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+            {songs.map((song) => (
+              <SongCard key={song.id} song={song} onClick={() => playSong(song)} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
 export default Home
-
-

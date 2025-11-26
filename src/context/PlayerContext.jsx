@@ -48,6 +48,14 @@ export const PlayerProvider = ({ children }) => {
     audio.volume = volume
   }, [volume])
 
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio || !currentSong?.audioUrl) return
+    if (audio.src !== currentSong.audioUrl) {
+      audio.src = currentSong.audioUrl
+    }
+  }, [currentSong])
+
   const ensureSource = useCallback((song) => {
     const audio = audioRef.current
     if (!audio || !song?.audioUrl) return null
@@ -74,7 +82,7 @@ export const PlayerProvider = ({ children }) => {
         setError('Autoplay diblokir. Tekan tombol play manual.')
         setIsPlaying(false)
       })
-  }, [])
+  }, [ensureSource])
 
   const pauseSong = useCallback(() => {
     const audio = audioRef.current
@@ -91,7 +99,7 @@ export const PlayerProvider = ({ children }) => {
       .play()
       .then(() => setIsPlaying(true))
       .catch(() => setError('Tidak dapat memutar audio ini.'))
-  }, [])
+  }, [currentSong, ensureSource])
 
   const togglePlay = useCallback(() => {
     if (!currentSong) return
@@ -131,6 +139,7 @@ export const PlayerProvider = ({ children }) => {
       togglePlay,
       seek,
       setVolumeLevel,
+      audioRef,
     }),
     [
       currentSong,
@@ -158,5 +167,3 @@ export const usePlayer = () => {
   }
   return context
 }
-
-
