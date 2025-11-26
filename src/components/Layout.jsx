@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import PlayerBar from './PlayerBar';
 
 const Layout = ({ children }) => {
     return (
@@ -20,12 +21,8 @@ const Layout = ({ children }) => {
                     </div>
                 </main>
 
-                {/* Player Bar Space - 90px height reserved */}
-                <div className="h-[90px] w-full bg-black border-t border-white/10 relative z-50 flex items-center justify-center">
-                    <span className="text-xs font-bold text-gray-600 tracking-widest uppercase">
-                        Player Bar Area (Reserved)
-                    </span>
-                </div>
+                {/* Player Bar - at the bottom */}
+                <PlayerBar />
             </div>
         </div>
     );
