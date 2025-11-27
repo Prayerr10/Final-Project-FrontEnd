@@ -1,52 +1,71 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaSearch, FaPlusSquare, FaHeart } from 'react-icons/fa';
-import { BiLibrary } from "react-icons/bi";
+import { FaHome, FaSearch, FaBook, FaPlus, FaHeart, FaMusic } from 'react-icons/fa';
 
 const Sidebar = () => {
     const location = useLocation();
 
-    const isActive = (path) => {
-        return location.pathname === path ? "text-white" : "text-gray-400";
-    };
+    const menuItems = [
+        { name: 'Home', path: '/', icon: FaHome },
+        { name: 'Search', path: '/search', icon: FaSearch },
+        { name: 'Library', path: '/library', icon: FaBook }
+    ];
 
     return (
-        <div className="w-64 bg-black h-full fixed left-0 top-0 p-6 flex flex-col gap-y-6 z-40">
-            <div className="flex flex-col gap-y-4">
-                <Link to="/" className={`flex items-center gap-x-4 hover:text-white transition cursor-pointer ${isActive('/')}`}>
-                    <FaHome size={24} />
-                    <span className="font-bold text-md">Home</span>
-                </Link>
-                <Link to="/search" className={`flex items-center gap-x-4 hover:text-white transition cursor-pointer ${isActive('/search')}`}>
-                    <FaSearch size={24} />
-                    <span className="font-bold text-md">Search</span>
-                </Link>
-                <Link to="/library" className={`flex items-center gap-x-4 hover:text-white transition cursor-pointer ${isActive('/library')}`}>
-                    <BiLibrary size={24} />
-                    <span className="font-bold text-md">Your Library</span>
-                </Link>
+        <div className="w-64 h-full bg-black flex flex-col p-6 border-r border-white/5">
+            {/* Logo */}
+            <div className="mb-10 px-2">
+                <h1 className="text-2xl font-black text-white flex items-center gap-3 tracking-tighter group cursor-default">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-300">
+                        <FaMusic className="text-black text-sm" />
+                    </div>
+                    <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent group-hover:text-white transition-colors">
+                        DHPF MUSIC
+                    </span>
+                </h1>
             </div>
 
-            <div className="mt-6 flex flex-col gap-y-4">
-                <Link to="/create-playlist" className={`flex items-center gap-x-4 hover:text-white transition cursor-pointer ${isActive('/create-playlist')}`}>
-                    <div className="bg-gray-200 p-1 rounded-sm">
-                        <FaPlusSquare size={20} className="text-black" />
-                    </div>
-                    <span className="font-bold text-sm">Create Playlist</span>
-                </Link>
-                <Link to="/liked-songs" className={`flex items-center gap-x-4 hover:text-white transition cursor-pointer ${isActive('/liked-songs')}`}>
-                    <div className="bg-gradient-to-br from-indigo-600 to-blue-300 p-1 rounded-sm opacity-90">
-                        <FaHeart size={20} className="text-white" />
-                    </div>
-                    <span className="font-bold text-sm">Liked Songs</span>
-                </Link>
-            </div>
+            {/* Navigation */}
+            <nav className="space-y-2 mb-8">
+                {menuItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = location.pathname === item.path;
+                    return (
+                        <Link
+                            key={item.path}
+                            to={item.path}
+                            className={`
+                flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-bold transition-all duration-300
+                ${isActive
+                                    ? 'bg-white/10 text-white shadow-lg shadow-white/5'
+                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                }
+              `}
+                        >
+                            <Icon className={`text-xl transition-transform duration-300 ${isActive ? 'scale-110 text-green-400' : ''}`} />
+                            <span>{item.name}</span>
+                        </Link>
+                    );
+                })}
+            </nav>
 
-            <div className="mt-auto border-t border-zinc-800 pt-4">
-                <div className="text-xs text-gray-500 flex flex-col gap-y-2">
-                    <p className="hover:underline cursor-pointer">Cookies</p>
-                    <p className="hover:underline cursor-pointer">Privacy</p>
-                </div>
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6"></div>
+
+            {/* Actions */}
+            <div className="space-y-2">
+                <button className="w-full flex items-center gap-4 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 group">
+                    <div className="w-7 h-7 bg-gray-300 group-hover:bg-white rounded flex items-center justify-center text-black transition-colors shadow-md">
+                        <FaPlus className="text-xs" />
+                    </div>
+                    <span className="text-sm font-bold">Create Playlist</span>
+                </button>
+                <button className="w-full flex items-center gap-4 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 group">
+                    <div className="w-7 h-7 bg-gradient-to-br from-indigo-600 to-blue-400 rounded flex items-center justify-center text-white opacity-80 group-hover:opacity-100 transition-opacity shadow-md">
+                        <FaHeart className="text-xs" />
+                    </div>
+                    <span className="text-sm font-bold">Liked Songs</span>
+                </button>
             </div>
         </div>
     );
