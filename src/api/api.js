@@ -34,6 +34,16 @@ export const getPlaylistById = async (id) => {
     }
 };
 
+export const createPlaylist = async (playlistData) => {
+    try {
+        const response = await api.post('/playlists', playlistData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating playlist:", error);
+        return null;
+    }
+};
+
 export const updatePlaylist = async (id, updatedData) => {
     try {
         const response = await api.put(`/playlists/${id}`, updatedData);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { createPlaylist } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const CreatePlaylist = () => {
@@ -19,7 +19,7 @@ const CreatePlaylist = () => {
         };
 
         try {
-            await axios.post('http://localhost:3000/playlists', newPlaylist);
+            await createPlaylist(newPlaylist);
             navigate('/');
         } catch (error) {
             console.error("Error creating playlist:", error);
