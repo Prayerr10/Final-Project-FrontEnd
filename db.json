@@ -5,6 +5,7 @@
             "title": "As It Was",
             "artist": "Harry Styles",
             "album": "Harry's House",
+            "genre": "pop",
             "image": "https://i.scdn.co/image/ab67616d0000b273b46f74097655d7f353caab14",
             "url": "/assets/songs/song1.mp3",
             "duration": "2:47",
@@ -15,6 +16,7 @@
             "title": "Stay",
             "artist": "The Kid LAROI & Justin Bieber",
             "album": "F*CK LOVE 3",
+            "genre": "pop",
             "image": "https://i.scdn.co/image/ab67616d0000b27341e31d6ea1d493dd77933ee5",
             "url": "/assets/songs/song2.mp3",
             "duration": "2:21",
@@ -25,6 +27,7 @@
             "title": "Sofia",
             "artist": "Clairo",
             "album": "Immunity",
+            "genre": "indie",
             "image": "https://i.scdn.co/image/ab67616d0000b27388e3c02b7db80aa027656967",
             "url": "/assets/songs/song3.mp3",
             "duration": "3:08",
@@ -35,6 +38,7 @@
             "title": "Do I Wanna Know?",
             "artist": "Arctic Monkeys",
             "album": "AM",
+            "genre": "indie",
             "image": "https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163",
             "url": "/assets/songs/song4.mp3",
             "duration": "4:32",
@@ -45,6 +49,7 @@
             "title": "God's Plan",
             "artist": "Drake",
             "album": "Scorpion",
+            "genre": "hiphop",
             "image": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5",
             "url": "/assets/songs/song5.mp3",
             "duration": "3:18",
@@ -55,6 +60,7 @@
             "title": "HUMBLE.",
             "artist": "Kendrick Lamar",
             "album": "DAMN.",
+            "genre": "hiphop",
             "image": "https://i.scdn.co/image/ab67616d0000b273d28d2ebdedb220e479743797",
             "url": "/assets/songs/song6.mp3",
             "duration": "2:57",
@@ -65,6 +71,7 @@
             "title": "Bohemian Rhapsody",
             "artist": "Queen",
             "album": "A Night at the Opera",
+            "genre": "rock",
             "image": "https://i.scdn.co/image/ab67616d0000b273ce4f1737bc8a646c8c4bd25a",
             "url": "/assets/songs/song7.mp3",
             "duration": "5:55",
@@ -75,6 +82,7 @@
             "title": "Sweet Child O' Mine",
             "artist": "Guns N' Roses",
             "album": "Appetite for Destruction",
+            "genre": "rock",
             "image": "https://i.scdn.co/image/ab67616d0000b27361e11c62480a88163121e875",
             "url": "/assets/songs/song8.mp3",
             "duration": "5:56",
@@ -85,6 +93,7 @@
             "title": "Alone",
             "artist": "Alan Walker",
             "album": "Different World",
+            "genre": "electronic",
             "image": "https://i.scdn.co/image/ab67616d0000b273a108e07c661f9fc54de9c43a",
             "url": "/assets/songs/song9.mp3",
             "duration": "2:40",
@@ -95,6 +104,7 @@
             "title": "Alone",
             "artist": "Marshmello",
             "album": "Monstercat 027",
+            "genre": "electronic",
             "image": "https://i.scdn.co/image/ab67616d0000b273370b9660197c885918806049",
             "url": "/assets/songs/song10.mp3",
             "duration": "4:33",
@@ -105,6 +115,7 @@
             "title": "drivers license",
             "artist": "Olivia Rodrigo",
             "album": "SOUR",
+            "genre": "mood",
             "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bf89836b72",
             "url": "/assets/songs/song11.mp3",
             "duration": "4:02",
@@ -115,6 +126,7 @@
             "title": "Glimpse of Us",
             "artist": "Joji",
             "album": "SMITHEREENS",
+            "genre": "mood",
             "image": "https://i.scdn.co/image/ab67616d0000b273a4697e7a179589288166c609",
             "url": "/assets/songs/song12.mp3",
             "duration": "3:53",
@@ -125,6 +137,7 @@
             "title": "Power",
             "artist": "Kanye West",
             "album": "My Beautiful Dark Twisted Fantasy",
+            "genre": "workout",
             "image": "https://i.scdn.co/image/ab67616d0000b273d9194aa18fa8c93a96972d61",
             "url": "/assets/songs/song13.mp3",
             "duration": "4:52",
@@ -135,6 +148,7 @@
             "title": "Till I Collapse",
             "artist": "Eminem",
             "album": "The Eminem Show",
+            "genre": "workout",
             "image": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4",
             "url": "/assets/songs/song14.mp3",
             "duration": "4:57",
@@ -145,6 +159,7 @@
             "title": "Location",
             "artist": "Khalid",
             "album": "American Teen",
+            "genre": "chill",
             "image": "https://i.scdn.co/image/ab67616d0000b273292026131c15f946399e1417",
             "url": "/assets/songs/song15.mp3",
             "duration": "3:39",
@@ -155,6 +170,7 @@
             "title": "Japanese Denim",
             "artist": "Daniel Caesar",
             "album": "Get You",
+            "genre": "chill",
             "image": "https://i.scdn.co/image/ab67616d0000b273016629731d830f3900c73231",
             "url": "/assets/songs/song16.mp3",
             "duration": "4:30",
@@ -165,6 +181,7 @@
             "title": "River Flows in You",
             "artist": "Yiruma",
             "album": "First Love",
+            "genre": "focus",
             "image": "https://i.scdn.co/image/ab67616d0000b2733f3d3248c5a932d8440939f6",
             "url": "/assets/songs/song17.mp3",
             "duration": "3:08",
@@ -175,10 +192,63 @@
             "title": "Clair de Lune",
             "artist": "Claude Debussy",
             "album": "Suite bergamasque",
+            "genre": "focus",
             "image": "https://i.scdn.co/image/ab67616d0000b2739735164d15494224a0d33c76",
             "url": "/assets/songs/song18.mp3",
             "duration": "5:05",
             "color": "#A855F7"
+        }
+    ],
+    "categories": [
+        {
+            "id": "pop",
+            "name": "Pop",
+            "color": "#EF4444"
+        },
+        {
+            "id": "indie",
+            "name": "Indie",
+            "color": "#F97316"
+        },
+        {
+            "id": "hiphop",
+            "name": "Hip-Hop",
+            "color": "#84CC16"
+        },
+        {
+            "id": "rock",
+            "name": "Rock",
+            "color": "#22C55E"
+        },
+        {
+            "id": "electronic",
+            "name": "Electronic",
+            "color": "#10B981"
+        },
+        {
+            "id": "mood",
+            "name": "Mood",
+            "color": "#06B6D4"
+        },
+        {
+            "id": "workout",
+            "name": "Workout",
+            "color": "#3B82F6"
+        },
+        {
+            "id": "chill",
+            "name": "Chill",
+            "color": "#8B5CF6"
+        },
+        {
+            "id": "focus",
+            "name": "Focus",
+            "color": "#A855F7"
+        },
+        {
+            "id": "sleep",
+            "name": "Sleep",
+            "color": "#EC4899"
         }
     ],
     "playlists": [
