@@ -1,0 +1,38 @@
+PENJELASAN IMPLEMENTASI CRUD (CREATE, READ, UPDATE, DELETE)
+================================================================
+
+Project ini telah mengimplementasikan fitur CRUD lengkap melalui REST API menggunakan `json-server` sebagai backend simulasi. Semua interaksi data dilakukan secara terpusat melalui file `src/api/api.js`.
+
+Berikut adalah rincian implementasi untuk setiap method:
+
+1. GET (Menampilkan Data)
+   - Fungsi: Mengambil data dari server untuk ditampilkan ke pengguna.
+   - Implementasi di Code (`src/api/api.js`):
+     - `getSongs()`: Mengambil daftar semua lagu. Digunakan di halaman Home dan Library.
+     - `getPlaylists()`: Mengambil daftar semua playlist. Digunakan di Sidebar dan halaman Library.
+     - `getPlaylistById(id)`: Mengambil detail satu playlist spesifik beserta lagunya. Digunakan di halaman PlaylistDetails.
+
+2. POST (Menambah Data)
+   - Fungsi: Mengirim data baru ke server untuk disimpan.
+   - Implementasi di Code (`src/api/api.js`):
+     - `createPlaylist(playlistData)`: Membuat playlist baru.
+   - Penggunaan:
+     - Di halaman `CreatePlaylist.jsx`, saat user mengisi form (Nama & Deskripsi) dan menekan tombol "Create", fungsi ini dipanggil untuk menyimpan playlist baru ke `db.json`.
+
+3. PUT (Mengubah Data)
+   - Fungsi: Memperbarui data yang sudah ada di server.
+   - Implementasi di Code (`src/api/api.js`):
+     - `updatePlaylist(id, updatedData)`: Mengupdate informasi playlist, termasuk mengubah daftar lagu di dalamnya.
+   - Penggunaan:
+     - Di halaman `PlaylistDetails.jsx`, saat user menambahkan lagu ("Add") atau menghapus lagu ("Remove") dari playlist, kita mengubah array `songs` dalam objek playlist dan mengirimkan data terupdate tersebut ke server menggunakan method PUT.
+
+4. DELETE (Menghapus Data)
+   - Fungsi: Menghapus data dari server secara permanen.
+   - Implementasi di Code (`src/api/api.js`):
+     - `deletePlaylist(id)`: Menghapus playlist berdasarkan ID-nya.
+   - Penggunaan:
+     - Di halaman `PlaylistDetails.jsx`, terdapat tombol "Delete Playlist". Saat ditekan dan dikonfirmasi, fungsi ini dipanggil untuk menghapus playlist tersebut dari `db.json`.
+
+----------------------------------------------------------------
+KESIMPULAN
+Project ini memenuhi syarat aplikasi dinamis dengan fitur manipulasi data lengkap (CRUD). Data tidak hanya disimpan di memori sementara browser, tetapi tersimpan secara persisten di database (`db.json`) melalui API request.
