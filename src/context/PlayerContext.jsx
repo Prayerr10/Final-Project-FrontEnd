@@ -10,6 +10,7 @@ export const PlayerProvider = ({ children }) => {
     const [queue, setQueue] = useState([]);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [volume, setVolume] = useState(1); // Default volume 100%
     const audioRef = useRef(null);
 
     useEffect(() => {
@@ -20,12 +21,16 @@ export const PlayerProvider = ({ children }) => {
         fetchSongsData();
     }, []);
 
-    const playSong = (song, newQueue = null) => {
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+        }
+    }, [volume]);
+
+    const playSong = async (song, newQueue = null) => {
         if (newQueue) {
             setQueue(newQueue);
         } else if (queue.length === 0) {
-            // If no queue exists, make a queue with just this song or all songs?
-            // Let's default to all songs if no queue is specified, starting from this song
             setQueue(allSongs);
         }
 
@@ -35,7 +40,11 @@ export const PlayerProvider = ({ children }) => {
         if (audioRef.current) {
             audioRef.current.src = song.url;
             audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(e => console.error("Playback failed:", e));
+            try {
+                await audioRef.current.play();
+            } catch (error) {
+                console.error("Playback failed (likely interrupted):", error);
+            }
         }
     };
 
@@ -54,10 +63,14 @@ export const PlayerProvider = ({ children }) => {
         }
     };
 
-    const resumeSong = () => {
+    const resumeSong = async () => {
         setIsPlaying(true);
         if (audioRef.current) {
-            audioRef.current.play().catch(e => console.error("Playback failed:", e));
+            try {
+                await audioRef.current.play();
+            } catch (error) {
+                console.error("Resume failed:", error);
+            }
         }
     };
 
@@ -102,6 +115,7 @@ export const PlayerProvider = ({ children }) => {
                 queue,
                 currentTime,
                 duration,
+                volume,
                 playSong,
                 playPlaylist,
                 pauseSong,
@@ -109,6 +123,7 @@ export const PlayerProvider = ({ children }) => {
                 nextSong,
                 prevSong,
                 seek,
+                setVolume,
                 audioRef,
             }}
         >

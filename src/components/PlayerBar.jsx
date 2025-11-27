@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
-import { FaPlay, FaPause, FaStepForward, FaStepBackward, FaVolumeUp } from 'react-icons/fa';
+import { FaPlay, FaPause, FaStepForward, FaStepBackward, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 const PlayerBar = () => {
     const {
@@ -12,7 +12,9 @@ const PlayerBar = () => {
         prevSong,
         currentTime,
         duration,
-        seek
+        seek,
+        volume,
+        setVolume
     } = useContext(PlayerContext);
 
     if (!currentSong) return null;
@@ -26,6 +28,10 @@ const PlayerBar = () => {
 
     const handleSeek = (e) => {
         seek(Number(e.target.value));
+    };
+
+    const handleVolumeChange = (e) => {
+        setVolume(Number(e.target.value));
     };
 
     return (
@@ -74,12 +80,18 @@ const PlayerBar = () => {
                 </div>
             </div>
 
-            {/* Volume / Extra */}
+            {/* Volume Control */}
             <div className="w-[30%] flex justify-end items-center gap-x-2 pr-4">
-                <FaVolumeUp className="text-gray-400" size={18} />
-                <div className="w-24 h-1 bg-zinc-600 rounded-full">
-                    <div className="h-full bg-white w-2/3 rounded-full hover:bg-green-500 transition"></div>
-                </div>
+                {volume === 0 ? <FaVolumeMute className="text-gray-400" size={18} /> : <FaVolumeUp className="text-gray-400" size={18} />}
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="w-24 h-1 bg-zinc-600 rounded-lg appearance-none cursor-pointer accent-white hover:accent-green-500"
+                />
             </div>
         </div>
     );

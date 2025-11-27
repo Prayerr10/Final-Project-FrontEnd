@@ -18,6 +18,11 @@ const Home = () => {
     // Get a random color for the gradient based on time or just static for now
     const gradientColor = "from-indigo-900";
 
+    const handlePlayPlaylist = (e, playlistSongs) => {
+        e.stopPropagation(); // Prevent bubbling if needed
+        playPlaylist(playlistSongs);
+    };
+
     return (
         <div className={`bg-gradient-to-b ${gradientColor} to-zinc-950 min-h-full p-8 -m-8 mb-24`}>
             <div className="mt-8 mb-8">
@@ -33,7 +38,10 @@ const Home = () => {
                             <div className="font-bold truncate py-5 pr-4 text-white">
                                 {playlist.name}
                             </div>
-                            <div className="absolute right-4 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition shadow-xl translate-y-2 group-hover:translate-y-0 hover:scale-105">
+                            <div
+                                className="absolute right-4 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition shadow-xl translate-y-2 group-hover:translate-y-0 hover:scale-105 z-10"
+                                onClick={(e) => handlePlayPlaylist(e, playlist.songs)}
+                            >
                                 <FaPlay className="text-black ml-1" />
                             </div>
                         </div>

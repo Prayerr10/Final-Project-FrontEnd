@@ -2,105 +2,205 @@
     "songs": [
         {
             "id": 1,
-            "title": "Twist The Knife",
-            "artist": "Chromatics",
-            "album": "Night Drive",
-            "image": "https://i.scdn.co/image/ab67616d0000b2730c13d3d5a503c8d34b3205f3",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            "duration": "6:12",
-            "color": "#782838"
+            "title": "As It Was",
+            "artist": "Harry Styles",
+            "album": "Harry's House",
+            "image": "https://i.scdn.co/image/ab67616d0000b273b46f74097655d7f353caab14",
+            "url": "/assets/songs/song1.mp3",
+            "duration": "2:47",
+            "color": "#EF4444"
         },
         {
             "id": 2,
-            "title": "Running Up That Hill",
-            "artist": "Kate Bush",
-            "album": "Hounds of Love",
-            "image": "https://i.scdn.co/image/ab67616d0000b2739b6ac96a594e8ce8545dbc97",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-            "duration": "7:05",
-            "color": "#584868"
+            "title": "Stay",
+            "artist": "The Kid LAROI & Justin Bieber",
+            "album": "F*CK LOVE 3",
+            "image": "https://i.scdn.co/image/ab67616d0000b27341e31d6ea1d493dd77933ee5",
+            "url": "/assets/songs/song2.mp3",
+            "duration": "2:21",
+            "color": "#EF4444"
         },
         {
             "id": 3,
-            "title": "Midnight City",
-            "artist": "M83",
-            "album": "Hurry Up, We're Dreaming",
-            "image": "https://i.scdn.co/image/ab67616d0000b2732953252a71d27f8e8332155f",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-            "duration": "5:44",
-            "color": "#283848"
+            "title": "Sofia",
+            "artist": "Clairo",
+            "album": "Immunity",
+            "image": "https://i.scdn.co/image/ab67616d0000b27388e3c02b7db80aa027656967",
+            "url": "/assets/songs/song3.mp3",
+            "duration": "3:08",
+            "color": "#F97316"
         },
         {
             "id": 4,
-            "title": "Space Song",
-            "artist": "Beach House",
-            "album": "Depression Cherry",
-            "image": "https://i.scdn.co/image/ab67616d0000b2735d78e071fdc472c7269c2625",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-            "duration": "5:28",
-            "color": "#882828"
+            "title": "Do I Wanna Know?",
+            "artist": "Arctic Monkeys",
+            "album": "AM",
+            "image": "https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163",
+            "url": "/assets/songs/song4.mp3",
+            "duration": "4:32",
+            "color": "#F97316"
         },
         {
             "id": 5,
-            "title": "After Dark",
-            "artist": "Mr. Kitty",
-            "album": "Time",
-            "image": "https://i.scdn.co/image/ab67616d0000b2732b18536b43081a98074a641d",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
-            "duration": "6:03",
-            "color": "#181818"
+            "title": "God's Plan",
+            "artist": "Drake",
+            "album": "Scorpion",
+            "image": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5",
+            "url": "/assets/songs/song5.mp3",
+            "duration": "3:18",
+            "color": "#84CC16"
         },
         {
             "id": 6,
-            "title": "Resonance",
-            "artist": "Home",
-            "album": "Odyssey",
-            "image": "https://i.scdn.co/image/ab67616d0000b273a1d135887d646c058a55d57b",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
-            "duration": "3:32",
-            "color": "#986838"
+            "title": "HUMBLE.",
+            "artist": "Kendrick Lamar",
+            "album": "DAMN.",
+            "image": "https://i.scdn.co/image/ab67616d0000b273d28d2ebdedb220e479743797",
+            "url": "/assets/songs/song6.mp3",
+            "duration": "2:57",
+            "color": "#84CC16"
         },
         {
             "id": 7,
-            "title": "Dreams",
-            "artist": "Fleetwood Mac",
-            "album": "Rumours",
-            "image": "https://i.scdn.co/image/ab67616d0000b273e059869045f9588965495033",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
-            "duration": "4:17",
-            "color": "#A88838"
+            "title": "Bohemian Rhapsody",
+            "artist": "Queen",
+            "album": "A Night at the Opera",
+            "image": "https://i.scdn.co/image/ab67616d0000b273ce4f1737bc8a646c8c4bd25a",
+            "url": "/assets/songs/song7.mp3",
+            "duration": "5:55",
+            "color": "#22C55E"
         },
         {
             "id": 8,
-            "title": "The Less I Know The Better",
-            "artist": "Tame Impala",
-            "album": "Currents",
-            "image": "https://i.scdn.co/image/ab67616d0000b2739e14877114c3e8a4d70f2b2e",
-            "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
-            "duration": "3:36",
-            "color": "#682878"
+            "title": "Sweet Child O' Mine",
+            "artist": "Guns N' Roses",
+            "album": "Appetite for Destruction",
+            "image": "https://i.scdn.co/image/ab67616d0000b27361e11c62480a88163121e875",
+            "url": "/assets/songs/song8.mp3",
+            "duration": "5:56",
+            "color": "#22C55E"
+        },
+        {
+            "id": 9,
+            "title": "Alone",
+            "artist": "Alan Walker",
+            "album": "Different World",
+            "image": "https://i.scdn.co/image/ab67616d0000b273a108e07c661f9fc54de9c43a",
+            "url": "/assets/songs/song9.mp3",
+            "duration": "2:40",
+            "color": "#10B981"
+        },
+        {
+            "id": 10,
+            "title": "Alone",
+            "artist": "Marshmello",
+            "album": "Monstercat 027",
+            "image": "https://i.scdn.co/image/ab67616d0000b273370b9660197c885918806049",
+            "url": "/assets/songs/song10.mp3",
+            "duration": "4:33",
+            "color": "#10B981"
+        },
+        {
+            "id": 11,
+            "title": "drivers license",
+            "artist": "Olivia Rodrigo",
+            "album": "SOUR",
+            "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bf89836b72",
+            "url": "/assets/songs/song11.mp3",
+            "duration": "4:02",
+            "color": "#06B6D4"
+        },
+        {
+            "id": 12,
+            "title": "Glimpse of Us",
+            "artist": "Joji",
+            "album": "SMITHEREENS",
+            "image": "https://i.scdn.co/image/ab67616d0000b273a4697e7a179589288166c609",
+            "url": "/assets/songs/song12.mp3",
+            "duration": "3:53",
+            "color": "#06B6D4"
+        },
+        {
+            "id": 13,
+            "title": "Power",
+            "artist": "Kanye West",
+            "album": "My Beautiful Dark Twisted Fantasy",
+            "image": "https://i.scdn.co/image/ab67616d0000b273d9194aa18fa8c93a96972d61",
+            "url": "/assets/songs/song13.mp3",
+            "duration": "4:52",
+            "color": "#3B82F6"
+        },
+        {
+            "id": 14,
+            "title": "Till I Collapse",
+            "artist": "Eminem",
+            "album": "The Eminem Show",
+            "image": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4",
+            "url": "/assets/songs/song14.mp3",
+            "duration": "4:57",
+            "color": "#3B82F6"
+        },
+        {
+            "id": 15,
+            "title": "Location",
+            "artist": "Khalid",
+            "album": "American Teen",
+            "image": "https://i.scdn.co/image/ab67616d0000b273292026131c15f946399e1417",
+            "url": "/assets/songs/song15.mp3",
+            "duration": "3:39",
+            "color": "#8B5CF6"
+        },
+        {
+            "id": 16,
+            "title": "Japanese Denim",
+            "artist": "Daniel Caesar",
+            "album": "Get You",
+            "image": "https://i.scdn.co/image/ab67616d0000b273016629731d830f3900c73231",
+            "url": "/assets/songs/song16.mp3",
+            "duration": "4:30",
+            "color": "#8B5CF6"
+        },
+        {
+            "id": 17,
+            "title": "River Flows in You",
+            "artist": "Yiruma",
+            "album": "First Love",
+            "image": "https://i.scdn.co/image/ab67616d0000b2733f3d3248c5a932d8440939f6",
+            "url": "/assets/songs/song17.mp3",
+            "duration": "3:08",
+            "color": "#A855F7"
+        },
+        {
+            "id": 18,
+            "title": "Clair de Lune",
+            "artist": "Claude Debussy",
+            "album": "Suite bergamasque",
+            "image": "https://i.scdn.co/image/ab67616d0000b2739735164d15494224a0d33c76",
+            "url": "/assets/songs/song18.mp3",
+            "duration": "5:05",
+            "color": "#A855F7"
         }
     ],
     "playlists": [
         {
             "id": 1,
-            "name": "Night Drive",
-            "description": "Perfect for late night drives.",
-            "image": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop",
+            "name": "Pop Hits",
+            "description": "Top pop tracks.",
+            "image": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1974&auto=format&fit=crop",
             "songs": [
                 1,
+                2,
                 3,
-                5,
-                6
+                11,
+                12
             ]
         },
         {
             "id": 2,
-            "name": "Indie Vibes",
-            "description": "The best of indie pop and rock.",
-            "image": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1974&auto=format&fit=crop",
+            "name": "Rock Classics",
+            "description": "Legends of rock.",
+            "image": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=2070&auto=format&fit=crop",
             "songs": [
-                2,
                 4,
                 7,
                 8
@@ -108,26 +208,28 @@
         },
         {
             "id": 3,
-            "name": "Synthwave Essentials",
-            "description": "Retro futuristic sounds.",
-            "image": "https://images.unsplash.com/photo-1504509546545-e000b4a62925?q=80&w=2071&auto=format&fit=crop",
+            "name": "Hip Hop & R&B",
+            "description": "Beats and flows.",
+            "image": "https://images.unsplash.com/photo-1571609549254-4d9645d2771d?q=80&w=2078&auto=format&fit=crop",
             "songs": [
-                3,
                 5,
                 6,
-                1
+                13,
+                14,
+                15,
+                16
             ]
         },
         {
             "id": 4,
-            "name": "Chill Hits",
-            "description": "Relax and unwind.",
-            "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
+            "name": "Electronic & Chill",
+            "description": "Vibes for focus and relax.",
+            "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
             "songs": [
-                4,
-                7,
-                8,
-                2
+                9,
+                10,
+                17,
+                18
             ]
         }
     ]
