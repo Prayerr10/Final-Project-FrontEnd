@@ -6,7 +6,7 @@
             "artist": "Harry Styles",
             "album": "Harry's House",
             "genre": "pop",
-            "image": "https://i.scdn.co/image/ab67616d0000b273b46f74097655d7f353caab14",
+            "image": "https://placehold.co/300x300/EF4444/FFFFFF?text=As+It+Was",
             "url": "/assets/songs/song1.mp3",
             "duration": "2:47",
             "color": "#EF4444"
@@ -17,7 +17,7 @@
             "artist": "The Kid LAROI & Justin Bieber",
             "album": "F*CK LOVE 3",
             "genre": "pop",
-            "image": "https://i.scdn.co/image/ab67616d0000b27341e31d6ea1d493dd77933ee5",
+            "image": "https://placehold.co/300x300/EF4444/FFFFFF?text=Stay",
             "url": "/assets/songs/song2.mp3",
             "duration": "2:21",
             "color": "#EF4444"
@@ -28,7 +28,7 @@
             "artist": "Clairo",
             "album": "Immunity",
             "genre": "indie",
-            "image": "https://i.scdn.co/image/ab67616d0000b27388e3c02b7db80aa027656967",
+            "image": "https://placehold.co/300x300/F97316/FFFFFF?text=Sofia",
             "url": "/assets/songs/song3.mp3",
             "duration": "3:08",
             "color": "#F97316"
@@ -39,7 +39,7 @@
             "artist": "Arctic Monkeys",
             "album": "AM",
             "genre": "indie",
-            "image": "https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163",
+            "image": "https://placehold.co/300x300/F97316/FFFFFF?text=Do+I+Wanna+Know",
             "url": "/assets/songs/song4.mp3",
             "duration": "4:32",
             "color": "#F97316"
@@ -50,7 +50,7 @@
             "artist": "Drake",
             "album": "Scorpion",
             "genre": "hiphop",
-            "image": "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5",
+            "image": "https://placehold.co/300x300/84CC16/FFFFFF?text=Gods+Plan",
             "url": "/assets/songs/song5.mp3",
             "duration": "3:18",
             "color": "#84CC16"
@@ -61,7 +61,7 @@
             "artist": "Kendrick Lamar",
             "album": "DAMN.",
             "genre": "hiphop",
-            "image": "https://i.scdn.co/image/ab67616d0000b273d28d2ebdedb220e479743797",
+            "image": "https://placehold.co/300x300/84CC16/FFFFFF?text=HUMBLE",
             "url": "/assets/songs/song6.mp3",
             "duration": "2:57",
             "color": "#84CC16"
@@ -72,7 +72,7 @@
             "artist": "Queen",
             "album": "A Night at the Opera",
             "genre": "rock",
-            "image": "https://i.scdn.co/image/ab67616d0000b273ce4f1737bc8a646c8c4bd25a",
+            "image": "https://placehold.co/300x300/22C55E/FFFFFF?text=Bohemian+Rhapsody",
             "url": "/assets/songs/song7.mp3",
             "duration": "5:55",
             "color": "#22C55E"
@@ -83,7 +83,7 @@
             "artist": "Guns N' Roses",
             "album": "Appetite for Destruction",
             "genre": "rock",
-            "image": "https://i.scdn.co/image/ab67616d0000b27361e11c62480a88163121e875",
+            "image": "https://placehold.co/300x300/22C55E/FFFFFF?text=Sweet+Child+O+Mine",
             "url": "/assets/songs/song8.mp3",
             "duration": "5:56",
             "color": "#22C55E"
@@ -94,7 +94,7 @@
             "artist": "Alan Walker",
             "album": "Different World",
             "genre": "electronic",
-            "image": "https://i.scdn.co/image/ab67616d0000b273a108e07c661f9fc54de9c43a",
+            "image": "https://placehold.co/300x300/10B981/FFFFFF?text=Alone+Walker",
             "url": "/assets/songs/song9.mp3",
             "duration": "2:40",
             "color": "#10B981"
@@ -105,7 +105,7 @@
             "artist": "Marshmello",
             "album": "Monstercat 027",
             "genre": "electronic",
-            "image": "https://i.scdn.co/image/ab67616d0000b273370b9660197c885918806049",
+            "image": "https://placehold.co/300x300/10B981/FFFFFF?text=Alone+Marshmello",
             "url": "/assets/songs/song10.mp3",
             "duration": "4:33",
             "color": "#10B981"
@@ -116,7 +116,7 @@
             "artist": "Olivia Rodrigo",
             "album": "SOUR",
             "genre": "mood",
-            "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bf89836b72",
+            "image": "https://placehold.co/300x300/06B6D4/FFFFFF?text=Drivers+License",
             "url": "/assets/songs/song11.mp3",
             "duration": "4:02",
             "color": "#06B6D4"
@@ -127,7 +127,7 @@
             "artist": "Joji",
             "album": "SMITHEREENS",
             "genre": "mood",
-            "image": "https://i.scdn.co/image/ab67616d0000b273a4697e7a179589288166c609",
+            "image": "https://placehold.co/300x300/06B6D4/FFFFFF?text=Glimpse+of+Us",
             "url": "/assets/songs/song12.mp3",
             "duration": "3:53",
             "color": "#06B6D4"
@@ -138,7 +138,7 @@
             "artist": "Kanye West",
             "album": "My Beautiful Dark Twisted Fantasy",
             "genre": "workout",
-            "image": "https://i.scdn.co/image/ab67616d0000b273d9194aa18fa8c93a96972d61",
+            "image": "https://placehold.co/300x300/3B82F6/FFFFFF?text=Power",
             "url": "/assets/songs/song13.mp3",
             "duration": "4:52",
             "color": "#3B82F6"
@@ -149,7 +149,7 @@
             "artist": "Eminem",
             "album": "The Eminem Show",
             "genre": "workout",
-            "image": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4",
+            "image": "https://placehold.co/300x300/3B82F6/FFFFFF?text=Till+I+Collapse",
             "url": "/assets/songs/song14.mp3",
             "duration": "4:57",
             "color": "#3B82F6"
@@ -160,7 +160,7 @@
             "artist": "Khalid",
             "album": "American Teen",
             "genre": "chill",
-            "image": "https://i.scdn.co/image/ab67616d0000b273292026131c15f946399e1417",
+            "image": "https://placehold.co/300x300/8B5CF6/FFFFFF?text=Location",
             "url": "/assets/songs/song15.mp3",
             "duration": "3:39",
             "color": "#8B5CF6"
@@ -171,7 +171,7 @@
             "artist": "Daniel Caesar",
             "album": "Get You",
             "genre": "chill",
-            "image": "https://i.scdn.co/image/ab67616d0000b273016629731d830f3900c73231",
+            "image": "https://placehold.co/300x300/8B5CF6/FFFFFF?text=Japanese+Denim",
             "url": "/assets/songs/song16.mp3",
             "duration": "4:30",
             "color": "#8B5CF6"
@@ -182,7 +182,7 @@
             "artist": "Yiruma",
             "album": "First Love",
             "genre": "focus",
-            "image": "https://i.scdn.co/image/ab67616d0000b2733f3d3248c5a932d8440939f6",
+            "image": "https://placehold.co/300x300/A855F7/FFFFFF?text=River+Flows",
             "url": "/assets/songs/song17.mp3",
             "duration": "3:08",
             "color": "#A855F7"
@@ -193,7 +193,7 @@
             "artist": "Claude Debussy",
             "album": "Suite bergamasque",
             "genre": "focus",
-            "image": "https://i.scdn.co/image/ab67616d0000b2739735164d15494224a0d33c76",
+            "image": "https://placehold.co/300x300/A855F7/FFFFFF?text=Clair+de+Lune",
             "url": "/assets/songs/song18.mp3",
             "duration": "5:05",
             "color": "#A855F7"
@@ -256,7 +256,7 @@
             "id": 1,
             "name": "Pop Hits",
             "description": "Top pop tracks.",
-            "image": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1974&auto=format&fit=crop",
+            "image": "https://placehold.co/300x300/EF4444/FFFFFF?text=Pop+Hits",
             "songs": [
                 1,
                 2,
@@ -269,7 +269,7 @@
             "id": 2,
             "name": "Rock Classics",
             "description": "Legends of rock.",
-            "image": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=2070&auto=format&fit=crop",
+            "image": "https://placehold.co/300x300/22C55E/FFFFFF?text=Rock+Classics",
             "songs": [
                 4,
                 7,
@@ -280,7 +280,7 @@
             "id": 3,
             "name": "Hip Hop & R&B",
             "description": "Beats and flows.",
-            "image": "https://images.unsplash.com/photo-1571609549254-4d9645d2771d?q=80&w=2078&auto=format&fit=crop",
+            "image": "https://placehold.co/300x300/84CC16/FFFFFF?text=Hip+Hop",
             "songs": [
                 5,
                 6,
@@ -294,7 +294,7 @@
             "id": 4,
             "name": "Electronic & Chill",
             "description": "Vibes for focus and relax.",
-            "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
+            "image": "https://placehold.co/300x300/10B981/FFFFFF?text=Electronic",
             "songs": [
                 9,
                 10,
