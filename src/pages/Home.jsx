@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
 import { getPlaylists } from '../api/api';
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const Home = () => {
-    const { allSongs, playSong, playPlaylist } = useContext(PlayerContext);
+    const { allSongs, playSong, playPlaylist, likedSongs, toggleLike } = useContext(PlayerContext);
     const [playlists, setPlaylists] = useState([]);
 
     useEffect(() => {
@@ -61,6 +61,19 @@ const Home = () => {
                             <img src={song.image} alt={song.title} className="w-full h-full object-cover rounded-md shadow-lg" />
                             <div className="absolute bottom-2 right-2 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition shadow-xl translate-y-2 group-hover:translate-y-0 hover:scale-105">
                                 <FaPlay className="text-black ml-1" />
+                            </div>
+                            <div
+                                className="absolute top-2 right-2 bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition hover:scale-110 hover:bg-black/70"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleLike(song.id);
+                                }}
+                            >
+                                {likedSongs.includes(song.id) ? (
+                                    <FaHeart className="text-green-500" size={16} />
+                                ) : (
+                                    <FaRegHeart className="text-white" size={16} />
+                                )}
                             </div>
                         </div>
                         <h3 className="font-bold truncate mb-1 text-white">{song.title}</h3>

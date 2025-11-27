@@ -24,4 +24,34 @@ export const getPlaylists = async () => {
     }
 };
 
+export const getPlaylistById = async (id) => {
+    try {
+        const response = await api.get(`/playlists/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching playlist ${id}:`, error);
+        return null;
+    }
+};
+
+export const updatePlaylist = async (id, updatedData) => {
+    try {
+        const response = await api.put(`/playlists/${id}`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error(`Error updating playlist ${id}:`, error);
+        return null;
+    }
+};
+
+export const deletePlaylist = async (id) => {
+    try {
+        await api.delete(`/playlists/${id}`);
+        return true;
+    } catch (error) {
+        console.error(`Error deleting playlist ${id}:`, error);
+        return false;
+    }
+};
+
 export default api;

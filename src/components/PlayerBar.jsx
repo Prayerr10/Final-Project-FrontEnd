@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
-import { FaPlay, FaPause, FaStepForward, FaStepBackward, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import { FaPlay, FaPause, FaStepForward, FaStepBackward, FaVolumeUp, FaVolumeMute, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const PlayerBar = () => {
     const {
@@ -14,7 +14,9 @@ const PlayerBar = () => {
         duration,
         seek,
         volume,
-        setVolume
+        setVolume,
+        likedSongs,
+        toggleLike
     } = useContext(PlayerContext);
 
     if (!currentSong) return null;
@@ -43,6 +45,16 @@ const PlayerBar = () => {
                     <p className="text-sm font-semibold hover:underline cursor-pointer text-white">{currentSong.title}</p>
                     <p className="text-xs text-gray-400 hover:underline cursor-pointer">{currentSong.artist}</p>
                 </div>
+                <button
+                    onClick={() => toggleLike(currentSong.id)}
+                    className="text-gray-400 hover:text-white transition ml-2"
+                >
+                    {likedSongs.includes(currentSong.id) ? (
+                        <FaHeart className="text-green-500" size={18} />
+                    ) : (
+                        <FaRegHeart size={18} />
+                    )}
+                </button>
             </div>
 
             {/* Player Controls */}

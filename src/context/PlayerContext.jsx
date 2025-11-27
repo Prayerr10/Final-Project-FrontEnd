@@ -13,6 +13,8 @@ export const PlayerProvider = ({ children }) => {
     const [volume, setVolume] = useState(1); // Default volume 100%
     const audioRef = useRef(null);
 
+    const [likedSongs, setLikedSongs] = useState([]);
+
     useEffect(() => {
         const fetchSongsData = async () => {
             const data = await getSongs();
@@ -106,6 +108,16 @@ export const PlayerProvider = ({ children }) => {
         }
     };
 
+    const toggleLike = (songId) => {
+        setLikedSongs((prev) => {
+            if (prev.includes(songId)) {
+                return prev.filter((id) => id !== songId);
+            } else {
+                return [...prev, songId];
+            }
+        });
+    };
+
     return (
         <PlayerContext.Provider
             value={{
@@ -116,6 +128,7 @@ export const PlayerProvider = ({ children }) => {
                 currentTime,
                 duration,
                 volume,
+                likedSongs,
                 playSong,
                 playPlaylist,
                 pauseSong,
@@ -124,6 +137,7 @@ export const PlayerProvider = ({ children }) => {
                 prevSong,
                 seek,
                 setVolume,
+                toggleLike,
                 audioRef,
             }}
         >
