@@ -1,84 +1,88 @@
-import { useEffect, useState } from 'react'
-import { getAllSongs } from '../api/api'
-import SongCard from '../components/SongCard'
-import { usePlayer } from '../context/PlayerContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { PlayerContext } from '../context/PlayerContext';
+import { getPlaylists } from '../api/api';
+import { FaPlay, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const Home = () => {
-  const [songs, setSongs] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const { playSong } = usePlayer()
+    const { allSongs, playSong, playPlaylist, likedSongs, toggleLike } = useContext(PlayerContext);
+    const [playlists, setPlaylists] = useState([]);
 
-  useEffect(() => {
-    let ignore = false
+    useEffect(() => {
+        const fetchPlaylists = async () => {
+            const data = await getPlaylists();
+            setPlaylists(data);
+        };
+        fetchPlaylists();
+    }, []);
 
-    const fetchSongs = async () => {
-      try {
-        const data = await getAllSongs()
-        if (!ignore) {
-          setSongs(data)
-        }
-      } catch (err) {
-        if (!ignore) {
-          setError('Gagal memuat daftar lagu. Coba lagi beberapa saat.')
-        }
-      } finally {
-        if (!ignore) {
-          setIsLoading(false)
-        }
-      }
-    }
+    // Get a random color for the gradient based on time or just static for now
+    const gradientColor = "from-indigo-900";
 
-    fetchSongs()
+    const handlePlayPlaylist = (e, playlistSongs) => {
+        e.stopPropagation(); // Prevent bubbling if needed
+        playPlaylist(playlistSongs);
+    };
 
-    return () => {
-      ignore = true
-    }
-  }, [])
+    return (
+        <div className={`bg-gradient-to-b ${gradientColor} to-zinc-950 min-h-full p-8 -m-8 mb-24`}>
+            <div className="mt-8 mb-8">
+                <h1 className="text-3xl font-bold mb-6 text-white drop-shadow-md">Good afternoon</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {playlists.slice(0, 6).map((playlist) => (
+                        <div
+                            key={playlist.id}
+                            className="bg-white/10 group rounded-md flex items-center gap-x-4 overflow-hidden hover:bg-white/20 transition cursor-pointer relative shadow-lg backdrop-blur-sm"
+                            onClick={() => playPlaylist(playlist.songs)}
+                        >
+                            <img src={playlist.image} alt={playlist.name} className="w-20 h-20 object-cover shadow-lg" />
+                            <div className="font-bold truncate py-5 pr-4 text-white">
+                                {playlist.name}
+                            </div>
+                            <div
+                                className="absolute right-4 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition shadow-xl translate-y-2 group-hover:translate-y-0 hover:scale-105 z-10"
+                                onClick={(e) => handlePlayPlaylist(e, playlist.songs)}
+                            >
+                                <FaPlay className="text-black ml-1" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-  return (
-    <section className="min-h-screen w-full bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
-        <header className="space-y-2">
-          <p className="text-sm uppercase tracking-widest text-emerald-400">Selamat datang</p>
-          <h1 className="text-3xl font-bold text-white md:text-4xl">Playlist Favorit Minggu Ini</h1>
-          <p className="text-sm text-zinc-400">
-            Pilih lagu untuk diputar dan nikmati nuansa Spotify versi kamu sendiri.
-          </p>
-        </header>
+            <h2 className="text-2xl font-bold mb-6 text-white">Made for you</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {allSongs.map((song) => (
+                    <div
+                        key={song.id}
+                        className="bg-zinc-900/40 p-4 rounded-lg hover:bg-zinc-800/60 transition cursor-pointer group shadow-md hover:shadow-xl backdrop-blur-sm border border-white/5"
+                        onClick={() => playSong(song)}
+                    >
+                        <div className="relative mb-4 w-full aspect-square">
+                            <img src={song.image} alt={song.title} className="w-full h-full object-cover rounded-md shadow-lg" />
+                            <div className="absolute bottom-2 right-2 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition shadow-xl translate-y-2 group-hover:translate-y-0 hover:scale-105">
+                                <FaPlay className="text-black ml-1" />
+                            </div>
+                            <div
+                                className="absolute top-2 right-2 bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition hover:scale-110 hover:bg-black/70"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleLike(song.id);
+                                }}
+                            >
+                                {likedSongs.includes(song.id) ? (
+                                    <FaHeart className="text-green-500" size={16} />
+                                ) : (
+                                    <FaRegHeart className="text-white" size={16} />
+                                )}
+                            </div>
+                        </div>
+                        <h3 className="font-bold truncate mb-1 text-white">{song.title}</h3>
+                        <p className="text-sm text-gray-400 truncate">{song.artist}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 
-        {isLoading && (
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <div key={`skeleton-${index}`} className="animate-pulse rounded-2xl bg-zinc-900/60 p-4">
-                <div className="mb-4 aspect-square rounded-xl bg-zinc-800" />
-                <div className="mb-2 h-4 rounded-full bg-zinc-800" />
-                <div className="h-3 w-2/3 rounded-full bg-zinc-800" />
-              </div>
-            ))}
-          </div>
-        )}
-
-        {!isLoading && error && (
-          <p className="rounded-xl bg-red-500/10 p-4 text-sm text-red-300">{error}</p>
-        )}
-
-        {!isLoading && !error && songs.length === 0 && (
-          <div className="rounded-2xl border border-dashed border-zinc-700 p-10 text-center text-zinc-400">
-            Belum ada lagu. Tambahkan lagu pertamamu!
-          </div>
-        )}
-
-        {!isLoading && !error && songs.length > 0 && (
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
-            {songs.map((song) => (
-              <SongCard key={song.id} song={song} onClick={() => playSong(song)} />
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  )
-}
-
-export default Home
+export default Home;

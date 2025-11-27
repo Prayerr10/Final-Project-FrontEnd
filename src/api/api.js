@@ -1,83 +1,56 @@
 import axios from 'axios';
 
-// Setup axios instance dengan baseURL
 const api = axios.create({
     baseURL: 'http://localhost:3000',
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
 
-/**
- * Get all songs from the database
- * @returns {Promise} Array of songs
- */
-export const getAllSongs = async () => {
+export const getSongs = async () => {
     try {
         const response = await api.get('/songs');
         return response.data;
     } catch (error) {
-        console.error('Error fetching songs:', error);
-        throw error;
+        console.error("Error fetching songs:", error);
+        return [];
     }
 };
 
-/**
- * Create a new song
- * @param {Object} data - Song data to create
- * @returns {Promise} Created song object
- */
-export const createSong = async (data) => {
+export const getPlaylists = async () => {
     try {
-        const response = await api.post('/songs', data);
+        const response = await api.get('/playlists');
         return response.data;
     } catch (error) {
-        console.error('Error creating song:', error);
-        throw error;
+        console.error("Error fetching playlists:", error);
+        return [];
     }
 };
 
-/**
- * Delete a song by ID
- * @param {string} id - Song ID to delete
- * @returns {Promise} Deleted song object
- */
-export const deleteSong = async (id) => {
+export const getPlaylistById = async (id) => {
     try {
-        const response = await api.delete(`/songs/${id}`);
+        const response = await api.get(`/playlists/${id}`);
         return response.data;
     } catch (error) {
-        console.error('Error deleting song:', error);
-        throw error;
+        console.error(`Error fetching playlist ${id}:`, error);
+        return null;
     }
 };
 
-/**
- * Search songs by query (title or artist)
- * @param {string} query - Search query
- * @returns {Promise} Filtered array of songs
- */
-export const searchSongs = async (query) => {
+export const updatePlaylist = async (id, updatedData) => {
     try {
-        const response = await api.get('/songs');
-        const songs = response.data;
-
-        if (!query || query.trim() === '') {
-            return songs;
-        }
-
-        const filtered = songs.filter((song) => {
-            const searchTerm = query.toLowerCase();
-            return (
-                song.title.toLowerCase().includes(searchTerm) ||
-                song.artist.toLowerCase().includes(searchTerm)
-            );
-        });
-
-        return filtered;
+        const response = await api.put(`/playlists/${id}`, updatedData);
+        return response.data;
     } catch (error) {
-        console.error('Error searching songs:', error);
-        throw error;
+        console.error(`Error updating playlist ${id}:`, error);
+        return null;
+    }
+};
+
+export const deletePlaylist = async (id) => {
+    try {
+        await api.delete(`/playlists/${id}`);
+        return true;
+    } catch (error) {
+        console.error(`Error deleting playlist ${id}:`, error);
+        return false;
     }
 };
 
